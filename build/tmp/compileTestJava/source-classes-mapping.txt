@@ -1,0 +1,2 @@
+com/flab/yeogiseoja/domain/email/model/EmailTest.java
+ com.flab.yeogiseoja.domain.email.model.EmailTest
