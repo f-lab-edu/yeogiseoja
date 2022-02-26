@@ -15,7 +15,7 @@ public class EmailCommand {
 
     public Email toValueObject() {
         return Email.builder()
-                .toEmailAddress(toEmailAddress)
+                .to(toEmailAddress)
                 .title(emailTitle)
                 .body(emailBody)
                 .build();

@@ -3,9 +3,12 @@ package com.flab.yeogiseoja.domain.member.model;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @Entity
@@ -16,10 +19,14 @@ public class Owner extends MemberCommonEntity implements Serializable {
     @GeneratedValue
     @Column(name = "owner_id")
     private long id;
-    @Column(updatable = false)
     private String businessLicenseNumber;
-    @Embedded
-    private EmailAuthentication emailAuthentication;
+    private String authToken;
+    private LocalDateTime authenticatedAt;
+    private LocalDateTime verifiedAt;
+    private LocalDateTime deletedAt;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @Embedded
     @AttributeOverrides({
@@ -37,8 +44,23 @@ public class Owner extends MemberCommonEntity implements Serializable {
     })
     private Account settledAccountInfo;
 
-    public Owner(String email, String businessLicenseNumber, String userName, String password, String phoneNumber, Account depositAccountInfo, Account settledAccountInfo) {
-        super(email, userName, password, phoneNumber);
+    @Getter
+    @RequiredArgsConstructor
+    public enum Status {
+        AUTH_NOT_YET("미인증"), AUTH_COMPLETE("인증완료"),
+        VERIFIED("검증완료"), DELETED("삭제");
+
+        private final String description;
+    }
+
+    public Owner(
+            String email,
+            String businessLicenseNumber,
+            String userName, String password,
+            String phoneNumber, Account depositAccountInfo,
+            Account settledAccountInfo
+    ) {
+        super(email, userName, password, phoneNumber);  //
         this.depositAccountInfo = depositAccountInfo;
         this.settledAccountInfo = settledAccountInfo;
         this.businessLicenseNumber = businessLicenseNumber;
@@ -48,17 +70,29 @@ public class Owner extends MemberCommonEntity implements Serializable {
         super(email);
     }
 
-    public void prepareEmailAuthentication() {
-        this.emailAuthentication = EmailAuthentication.prepareAuthentication();
+    public String getAuthTokenForAuthentication() {
+        var authToken = UUID.randomUUID().toString();
+        this.authToken = authToken;
+        return authToken;
     }
 
-    public void confirmEmailAuthentication() {
-        this.emailAuthentication = EmailAuthentication.doneAuthentication();
+    public void confirmAuthToken(String authToken) {
+        if (!this.authToken.equals(authToken)) throw new IllegalArgumentException();
+
+        this.authenticatedAt = LocalDateTime.now();
+        this.status = Status.AUTH_COMPLETE;
     }
 
-    public boolean isGenerateToken(String token) {
-        return this.emailAuthentication.getEmailAuthenticationToken().equals(token);
+    public void verified() {
+        if (this.status == Status.DELETED) throw new RuntimeException("한번 삭제된 Owner 는 다시 검증할 수 없습니다");
+        if (this.status != Status.AUTH_COMPLETE) throw new RuntimeException();
+
+        this.status = Status.VERIFIED;
+        this.verifiedAt = LocalDateTime.now();
     }
 
-
+    public void deleted() {
+        this.status = Status.DELETED;
+        this.verifiedAt = LocalDateTime.now();
+    }
 }

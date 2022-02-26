@@ -1,16 +1,18 @@
 server:
-  address: localhost
+#  address: localhost
   port: 8080
   shutdown: graceful
-loggin:
+
+logging:
   level:
     root: true
+
 spring:
   lifecycle:
     timeout-per-shutdown-phase: 30s
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
+    username: root  # svc_reservation CRUD (DML OK, DDL X)
     password: root
     url: jdbc:mysql://localhost:3306/flab?createDatabaseIfNotExist=true&&allowPublicKeyRetrieval=true&&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
   jpa:
