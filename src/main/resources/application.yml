@@ -1,0 +1,40 @@
+server:
+  #  address: localhost
+  port: 8080
+  shutdown: graceful
+
+logging:
+  level:
+    "[org.hibernate]": DEBUG
+
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root  # svc_reservation CRUD (DML OK, DDL X)
+    password: root
+    url: jdbc:mysql://localhost:3306/flab?createDatabaseIfNotExist=true&&allowPublicKeyRetrieval=true&&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+      format_sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: yeogiseoja@gmail.com
+    password: 1q2w3e4r@@
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
+
+
