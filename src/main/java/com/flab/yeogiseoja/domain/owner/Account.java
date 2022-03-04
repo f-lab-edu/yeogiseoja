@@ -1,7 +1,9 @@
 package com.flab.yeogiseoja.domain.owner;
 
 import com.flab.yeogiseoja.common.response.messages.error.ErrorCode;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.util.Assert;
 
 import javax.persistence.Embeddable;

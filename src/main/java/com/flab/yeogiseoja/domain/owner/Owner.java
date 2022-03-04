@@ -15,7 +15,6 @@ import java.util.UUID;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Owner {
-
     @Id
     @GeneratedValue
     @Column(name = "owner_id")
@@ -110,5 +109,8 @@ public class Owner {
     public void deleted() {
         this.status = Status.DELETED;
         this.deletedAt = LocalDateTime.now();
+    }
+    public void addAccommodation(Accommodation accommodation){
+        this.accommodations.add(accommodation);
     }
 }

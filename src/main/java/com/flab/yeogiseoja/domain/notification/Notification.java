@@ -10,22 +10,19 @@ import java.time.LocalDateTime;
 
 @Getter
 @Entity
-@Inheritance
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "notification_type")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String from;
-    private String to;
-    private String message;
+    private String sender;
+    private String receiver;
     @CreationTimestamp
     private LocalDateTime sendAt;
-
-    public Notification(String from, String to, String message) {
-        this.from = from;
-        this.to = to;
-        this.message = message;
+    public Notification(String sender, String receiver) {
+        this.sender = sender;
+        this.receiver = receiver;
     }
 }

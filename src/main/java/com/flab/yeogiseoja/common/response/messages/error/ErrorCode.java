@@ -8,6 +8,11 @@ import lombok.RequiredArgsConstructor;
 public enum ErrorCode {
     EMAIL_SEND_FAIL("메일 시스템에 문제가 있어 해당 이메일 발송에 실패하였습니다. 잠시 후에 다시 시도해 주세요"),
     EMAIL_IS_EMPTY("이메일을 입력하지 않으셨습니다"),
+    CONTACT_IS_EMPTY("연락처를 입력하지 않으셨습니다"),
+    ACCOMMODATION_NAME_IS_EMPTY("상호를 입력하지 않으셨습니다"),
+    DETAIL_ADDRESS_IS_EMPTY("상세 주소를 입력하지 않으셨습니다"),
+    STATE_IS_EMPTY("지역을 입력하지 않으셨습니다"),
+    CITY_IS_EMPTY("도시를 입력하지 않으셨습니다"),
     NICKNAME_IS_EMPTY("닉네임을 입력하지 않으셨습니다"),
     NAME_IS_EMPTY("성명을 입력하지 않으셨습니다"),
     PASSWORD_IS_EMPTY("비밀번호를 입력하지 않으셨습니다"),
@@ -15,7 +20,8 @@ public enum ErrorCode {
     BANK_CODE_IS_EMPTY("은행명을 입력해주세요"),
     ACCOUNT_NUMBER_IS_EMPTY("계좌번호를 입력해주세요"),
     ACCOUNT_HOLDER_IS_EMPTY("계좌 소유주를 입력해주세요"),
-    ACCOMMODATION_REGULATION_EMPTY("규정 분류를 입력해주세요"),
+    NOTICE_CATEGORY_EMPTY("규정 분류를 입력해주세요"),
+    CATEGORY_IS_EMPTY("카테고리를 선택하지 않았습니다"),
     BUSINESS_LICENSE_NUMBER_IS_EMPTY("사업자 등록번호를 입력해주세요");
 
     private final String errorMsg;
