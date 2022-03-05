@@ -5,6 +5,7 @@ import com.flab.yeogiseoja.domain.accommodation.location.City;
 import com.flab.yeogiseoja.domain.accommodation.location.State;
 import com.flab.yeogiseoja.domain.owner.Owner;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.util.Assert;
@@ -17,6 +18,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Accommodation {
+
     @Id
     @GeneratedValue
     @Column(name = "accommodation_id")
@@ -46,6 +48,7 @@ public class Accommodation {
     @OneToMany(mappedBy = "accommodation", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AccommodationNotice> accommodationNotices = new ArrayList<>();
 
+    @Builder
     public Accommodation(
             String name,
             String shortDescription,

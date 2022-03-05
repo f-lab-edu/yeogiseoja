@@ -27,7 +27,9 @@ public class Category {
 
     @Getter
     public enum Type {
-        MOTEL("모텔"), HOTEL_RESORT("호텔/리조트"), RENTAL_COTTAGE_FULL_VILLA("팬션/풀빌바"), GUEST_HOUSE("게스트 하우스");
+        MOTEL("모텔"), HOTEL_RESORT("호텔/리조트"),
+        RENTAL_COTTAGE_FULL_VILLA("팬션/풀빌바"),
+        GUEST_HOUSE("게스트 하우스");
         private final String description;
 
         Type(String description) {

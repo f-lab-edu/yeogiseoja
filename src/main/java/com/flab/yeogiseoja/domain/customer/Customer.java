@@ -29,13 +29,15 @@ public class Customer {
     private String name;
     private String password;
     private String phoneNumber;
-    @CreationTimestamp
-    private LocalDateTime createAt;
-    @UpdateTimestamp
-    private LocalDateTime updateAt;
     @Enumerated(EnumType.STRING)
     private Owner.Status status;
     private LocalDateTime authenticatedAt;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
     @Builder
     public Customer(
