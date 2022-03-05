@@ -1,6 +1,5 @@
 package com.flab.yeogiseoja.domain.owner;
 
-import com.flab.yeogiseoja.domain.customer.Customer;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -24,6 +23,8 @@ public class OwnerCommand {
         private final String settledAccountHolderName;
 
         public Owner toEntity() {
+            // TODO - add verify logic
+
             Account depositAccount = new Account(
                     depositBankCode,
                     depositAccountNumber,
@@ -34,8 +35,7 @@ public class OwnerCommand {
                     settledAccountNumber,
                     settledAccountHolderName
             );
-            return Owner
-                    .builder()
+            return Owner.builder()
                     .name(name)
                     .businessLicenseNumber(businessLicenseNumber)
                     .password(password)
@@ -46,5 +46,4 @@ public class OwnerCommand {
                     .build();
         }
     }
-
 }

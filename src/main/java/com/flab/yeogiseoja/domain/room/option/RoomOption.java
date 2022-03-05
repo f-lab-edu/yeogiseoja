@@ -15,16 +15,19 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class RoomOption {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="room_option_id")
+    @Column(name = "room_option_id")
     private long id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
     private Room room;
     private long price;
-    public RoomOption(Room room,long price){
-        this.room=room;
-        this.price=price;
+
+    public RoomOption(Room room, long price) {
+        this.room = room;
+        this.price = price;
     }
 }

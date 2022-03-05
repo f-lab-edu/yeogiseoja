@@ -40,7 +40,8 @@ public class AccommodationNotice {
             String intermediateTitle,
             HashSet<String> contents,
             Accommodation accommodation,
-            AccommodationNoticeCategory accommodationNoticeCategory) {
+            AccommodationNoticeCategory accommodationNoticeCategory
+    ) {
         Assert.notNull(accommodationNoticeCategory, ErrorCode.NOTICE_CATEGORY_EMPTY.getErrorMsg());
         this.accommodationNoticeCategory = accommodationNoticeCategory;
         this.intermediateTitle = intermediateTitle;

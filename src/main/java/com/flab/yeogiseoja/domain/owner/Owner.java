@@ -15,6 +15,7 @@ import java.util.UUID;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Owner {
+
     @Id
     @GeneratedValue
     @Column(name = "owner_id")
@@ -25,19 +26,11 @@ public class Owner {
     private String name;
     private String password;
     private String phoneNumber;
-    @CreationTimestamp
-    private LocalDateTime createAt;
-    @UpdateTimestamp
-    private LocalDateTime updateAt;
     private LocalDateTime authenticatedAt;
     private LocalDateTime verifiedAt;
     private LocalDateTime deletedAt;
-    @OneToMany(
-            mappedBy = "owner",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            orphanRemoval = true
-    )
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Accommodation> accommodations = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
@@ -58,6 +51,12 @@ public class Owner {
             @AttributeOverride(name = "accountHolderName", column = @Column(name = "settled_account_holder_name"))
     })
     private Account settledAccountInfo;
+
+    @CreationTimestamp
+    private LocalDateTime createAt;
+
+    @UpdateTimestamp
+    private LocalDateTime updateAt;
 
     @Getter
     @RequiredArgsConstructor
@@ -110,7 +109,8 @@ public class Owner {
         this.status = Status.DELETED;
         this.deletedAt = LocalDateTime.now();
     }
-    public void addAccommodation(Accommodation accommodation){
+
+    public void addAccommodation(Accommodation accommodation) {
         this.accommodations.add(accommodation);
     }
 }

@@ -11,6 +11,7 @@ import javax.persistence.*;
 public class EmailNotification extends Notification {
     private String subject;
     private String text;
+
     public EmailNotification(String receiver, String subject, String text) {
         super("admin@yeogiseoja.com", subject);
         this.subject = subject;

@@ -20,24 +20,16 @@ public class Room {
     private String name;
     private String shortDescription;
     private long roomCount;
-    @OneToMany(
-            mappedBy = "room",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<RoomNotice> roomNotices = new ArrayList<>();
-    @OneToMany(
-            mappedBy = "room",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<RoomOption> roomOptions = new ArrayList<>();
-    public Room(String name,String shortDescription,long roomCount){
-        this.name=name;
-        this.shortDescription=shortDescription;
-        this.roomCount=roomCount;
-    }
 
+    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RoomNotice> roomNotices = new ArrayList<>();
+
+    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RoomOption> roomOptions = new ArrayList<>();
+
+    public Room(String name, String shortDescription, long roomCount) {
+        this.name = name;
+        this.shortDescription = shortDescription;
+        this.roomCount = roomCount;
+    }
 }

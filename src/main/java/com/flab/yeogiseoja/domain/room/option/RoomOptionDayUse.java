@@ -29,6 +29,4 @@ public class RoomOptionDayUse extends RoomOption {
         this.availableStartTime = availableStartTime;
         this.availableEndTime = availableEndTime;
     }
-
-
 }

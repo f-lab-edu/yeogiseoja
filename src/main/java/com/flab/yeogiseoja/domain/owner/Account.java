@@ -10,10 +10,11 @@ import javax.persistence.Embeddable;
 
 @Getter
 @Embeddable
+@NoArgsConstructor
 public class Account {
-    private final String accountBankCode;
-    private final String accountNumber;
-    private final String accountHolderName;
+    private String accountBankCode;
+    private String accountNumber;
+    private String accountHolderName;
 
     public Account(String accountBankCode, String accountNumber, String accountHolderName) {
         Assert.hasLength(accountNumber, ErrorCode.BANK_CODE_IS_EMPTY.getErrorMsg());

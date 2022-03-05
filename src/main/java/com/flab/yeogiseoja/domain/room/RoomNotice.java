@@ -42,7 +42,7 @@ public class RoomNotice {
         this.roomNoticeCategory = roomNoticeCategory;
         this.intermediateTitle = intermediateTitle;
         this.contents = contents;
-        this.room=room;
+        this.room = room;
     }
 
     @ManyToOne
