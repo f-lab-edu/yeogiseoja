@@ -23,7 +23,7 @@ public class Owner {
     private String businessLicenseNumber;
     private String authToken;
     private String email;
-    private String name;
+    private String representationName;
     private String password;
     private String phoneNumber;
     private LocalDateTime authenticatedAt;
@@ -71,20 +71,21 @@ public class Owner {
     public Owner(
             String email,
             String businessLicenseNumber,
-            String name, String password,
+            String representationName, String password,
             String phoneNumber, Account depositAccountInfo,
             Account settledAccountInfo
     ) {
         this.email = email;
-        this.name = name;
+        this.representationName = representationName;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.depositAccountInfo = depositAccountInfo;
         this.settledAccountInfo = settledAccountInfo;
         this.businessLicenseNumber = businessLicenseNumber;
+        this.status = Status.AUTH_NOT_YET;
     }
 
-    public String getAuthTokenForAuthentication() {
+    public String generateAuthTokenForAuthentication() {
         var authToken = UUID.randomUUID().toString();
         this.authToken = authToken;
         return authToken;

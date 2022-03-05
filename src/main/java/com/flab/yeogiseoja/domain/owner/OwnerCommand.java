@@ -10,9 +10,9 @@ public class OwnerCommand {
     @Builder
     @ToString
     public static class RegisterOwnerRequest {
+        private final String representationName;
         private final String email;
         private final String businessLicenseNumber;
-        private final String name;
         private final String password;
         private final String phoneNumber;
         private final String depositBankCode;
@@ -36,7 +36,7 @@ public class OwnerCommand {
                     settledAccountHolderName
             );
             return Owner.builder()
-                    .name(name)
+                    .name(representationName)
                     .businessLicenseNumber(businessLicenseNumber)
                     .password(password)
                     .phoneNumber(phoneNumber)
