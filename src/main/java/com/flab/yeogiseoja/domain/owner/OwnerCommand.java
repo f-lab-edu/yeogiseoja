@@ -1,10 +1,35 @@
 package com.flab.yeogiseoja.domain.owner;
 
+import com.flab.yeogiseoja.common.response.exception.CustomInternalServerError;
+import com.flab.yeogiseoja.common.response.messages.error.ErrorCode;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.Assert;
 
 public class OwnerCommand {
+
+
+    @Getter
+    @Builder
+    @ToString
+    public static class UpdateOwnerRequest {
+
+    }
+
+    @Builder
+    @ToString
+    public static class RemoveOwnerRequest {
+        private final String email;
+
+        public String getEmail() {
+            if (StringUtils.isEmpty(email)) {
+                throw new CustomInternalServerError(ErrorCode.EMAIL_IS_EMPTY);
+            }
+            return email;
+        }
+    }
 
     @Getter
     @Builder
@@ -36,7 +61,7 @@ public class OwnerCommand {
                     settledAccountHolderName
             );
             return Owner.builder()
-                    .name(representationName)
+                    .representationName(representationName)
                     .businessLicenseNumber(businessLicenseNumber)
                     .password(password)
                     .phoneNumber(phoneNumber)

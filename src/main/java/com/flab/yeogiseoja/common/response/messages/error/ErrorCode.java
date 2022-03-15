@@ -7,7 +7,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum ErrorCode {
     EMAIL_SEND_FAIL("메일 시스템에 문제가 있어 해당 이메일 발송에 실패하였습니다. 잠시 후에 다시 시도해 주세요"),
+    NOT_EMAIL_FORMAT("이메일 형식을 확인해주세요"),
+    COMMON_SYSTEM_ERROR("일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요."),
     EMAIL_IS_EMPTY("이메일을 입력하지 않으셨습니다"),
+    DUPLICATE_EMAIL("이메일이 중복되었습니다"),
     CONTACT_IS_EMPTY("연락처를 입력하지 않으셨습니다"),
     ACCOMMODATION_NAME_IS_EMPTY("상호를 입력하지 않으셨습니다"),
     DETAIL_ADDRESS_IS_EMPTY("상세 주소를 입력하지 않으셨습니다"),

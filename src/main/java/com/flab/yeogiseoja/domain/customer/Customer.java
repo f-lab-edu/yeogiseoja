@@ -26,7 +26,7 @@ public class Customer {
     private String nickName;
     private String authToken;
     private String email;
-    private String name;
+    private String customerName;
     private String password;
     private String phoneNumber;
     @Enumerated(EnumType.STRING)
@@ -43,14 +43,14 @@ public class Customer {
     public Customer(
             String email,
             String nickName,
-            String name,
+            String customerName,
             String password,
             String phoneNumber
     ) {
         Assert.hasLength(nickName, ErrorCode.NICKNAME_IS_EMPTY.getErrorMsg());
         Assert.hasLength(email, ErrorCode.EMAIL_IS_EMPTY.getErrorMsg());
         this.email = email;
-        this.name = name;
+        this.customerName = customerName;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.nickName = nickName;
