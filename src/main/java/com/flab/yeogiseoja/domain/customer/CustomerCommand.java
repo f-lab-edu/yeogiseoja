@@ -18,7 +18,12 @@ public class CustomerCommand {
         private final String phoneNumber;
 
         public Customer toEntity() {
-            return Customer.builder().name(name).nickName(nickName).email(email).password(password).phoneNumber(phoneNumber).build();
+            return Customer.builder()
+                           .customerName(name)
+                           .nickName(nickName)
+                           .email(email)
+                           .password(password)
+                           .phoneNumber(phoneNumber).build();
         }
     }
 }

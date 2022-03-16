@@ -1,7 +1,7 @@
-package com.flab.yeogiseoja.domain.room.option;
+package com.flab.yeogiseoja.domain.accommodation.room.option;
 
 
-import com.flab.yeogiseoja.domain.room.Room;
+import com.flab.yeogiseoja.domain.accommodation.room.Room;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

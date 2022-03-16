@@ -1,7 +1,6 @@
-package com.flab.yeogiseoja.domain.room;
+package com.flab.yeogiseoja.domain.accommodation.room;
 
 import com.flab.yeogiseoja.common.response.messages.error.ErrorCode;
-import com.flab.yeogiseoja.domain.accommodation.Accommodation;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

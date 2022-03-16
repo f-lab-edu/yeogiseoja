@@ -2,11 +2,13 @@ package com.flab.yeogiseoja.domain.owner;
 
 import com.flab.yeogiseoja.common.response.exception.CustomInternalServerError;
 import com.flab.yeogiseoja.common.response.messages.error.ErrorCode;
+import com.flab.yeogiseoja.domain.policy.Policy;
+import com.flab.yeogiseoja.domain.policy.BusinessLicenseNumberPolicy;
+import com.flab.yeogiseoja.domain.policy.EmailPolicy;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.util.Assert;
 
 public class OwnerCommand {
 
@@ -49,7 +51,12 @@ public class OwnerCommand {
 
         public Owner toEntity() {
             // TODO - add verify logic
+            Policy policy = new Policy(
+                    new EmailPolicy(email),
+                    new BusinessLicenseNumberPolicy(email)
+            );
 
+            policy.executePolicyStrategy();
             Account depositAccount = new Account(
                     depositBankCode,
                     depositAccountNumber,
