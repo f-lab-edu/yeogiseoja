@@ -1,7 +1,5 @@
 package com.flab.yeogiseoja.domain.customer;
 
-import com.flab.yeogiseoja.domain.owner.Account;
-import com.flab.yeogiseoja.domain.owner.Owner;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -19,11 +17,11 @@ public class CustomerCommand {
 
         public Customer toEntity() {
             return Customer.builder()
-                           .customerName(name)
-                           .nickName(nickName)
-                           .email(email)
-                           .password(password)
-                           .phoneNumber(phoneNumber).build();
+                    .customerName(name)
+                    .nickName(nickName)
+                    .email(email)
+                    .password(password)
+                    .phoneNumber(phoneNumber).build();
         }
     }
 }

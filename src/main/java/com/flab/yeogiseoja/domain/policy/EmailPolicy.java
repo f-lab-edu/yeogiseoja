@@ -1,10 +1,6 @@
 package com.flab.yeogiseoja.domain.policy;
 
 import com.flab.yeogiseoja.common.response.messages.error.ErrorCode;
-import com.flab.yeogiseoja.domain.policy.Policy;
-import com.flab.yeogiseoja.domain.policy.PolicyStrategy;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.util.Assert;
 
 import java.util.regex.Matcher;
@@ -13,8 +9,9 @@ import java.util.regex.Pattern;
 
 public class EmailPolicy implements PolicyStrategy {
     private final String email;
+
     public EmailPolicy(String email) {
-        this.email=email;
+        this.email = email;
     }
 
     private void checkEmailEmpty(String email) {
@@ -25,9 +22,7 @@ public class EmailPolicy implements PolicyStrategy {
         String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(email);
-        if (!m.matches()) {
-            throw new IllegalArgumentException(ErrorCode.NOT_EMAIL_FORMAT.getErrorMsg());
-        }
+        Assert.isTrue(m.matches(), ErrorCode.NOT_EMAIL_FORMAT.getErrorMsg());
     }
 
     @Override

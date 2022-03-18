@@ -1,6 +1,7 @@
 package com.flab.yeogiseoja.domain.accommodation;
 
 import com.flab.yeogiseoja.common.response.messages.error.ErrorCode;
+import com.flab.yeogiseoja.domain.AbstractEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.Set;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class AccommodationNotice {
+public class AccommodationNotice extends AbstractEntity {
 
     @Id
     @GeneratedValue

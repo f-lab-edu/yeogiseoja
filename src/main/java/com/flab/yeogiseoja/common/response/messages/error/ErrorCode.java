@@ -7,9 +7,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum ErrorCode {
     EMAIL_SEND_FAIL("메일 시스템에 문제가 있어 해당 이메일 발송에 실패하였습니다. 잠시 후에 다시 시도해 주세요"),
+    ALREADY_REMOVE_USER("이미 탈퇴한 유저 입니다"),
+    IS_REMOVE_USER("탈퇴한 유저 입니다"),
     NOT_EMAIL_FORMAT("이메일 형식을 확인해주세요"),
+    NOT_EXIST_USER("사용자가 존재하지 않습니다"),
     BUSINESS_LICENSE_NUMBER_INCLUDE_STRING("사업자 등록번호에 문자열이 존재합니다"),
-    COMMON_SYSTEM_ERROR("일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요."),
+    COMMON_SYSTEM_ERROR("일시적인 오류가 발생했습니다. 잠시 후 다시 시도해주세요"),
     EMAIL_IS_EMPTY("이메일을 입력하지 않으셨습니다"),
     DUPLICATE_EMAIL("이메일이 중복되었습니다"),
     CONTACT_IS_EMPTY("연락처를 입력하지 않으셨습니다"),
@@ -17,6 +20,8 @@ public enum ErrorCode {
     DETAIL_ADDRESS_IS_EMPTY("상세 주소를 입력하지 않으셨습니다"),
     STATE_IS_EMPTY("지역을 입력하지 않으셨습니다"),
     CITY_IS_EMPTY("도시를 입력하지 않으셨습니다"),
+    AUTH_TOKEN_CONFIRM_FAIL("인증 토큰을 확인해주세요"),
+    PASSWORD_CONFIRM_FAIL("비빌번호가 맞지 않습니다"),
     NICKNAME_IS_EMPTY("닉네임을 입력하지 않으셨습니다"),
     NAME_IS_EMPTY("성명을 입력하지 않으셨습니다"),
     PASSWORD_IS_EMPTY("비밀번호를 입력하지 않으셨습니다"),
@@ -26,6 +31,8 @@ public enum ErrorCode {
     ACCOUNT_HOLDER_IS_EMPTY("계좌 소유주를 입력해주세요"),
     NOTICE_CATEGORY_EMPTY("규정 분류를 입력해주세요"),
     CATEGORY_IS_EMPTY("카테고리를 선택하지 않았습니다"),
+    NOT_PHONE_FORMAT("핸드폰 형식이 올바르지 않습니다"),
+    PHONE_NUMBER_IS_EMPTY("핸드폰 번호를 입력하지 않으셨습니다"),
     BUSINESS_LICENSE_NUMBER_IS_EMPTY("사업자 등록번호를 입력해주세요");
 
     private final String errorMsg;

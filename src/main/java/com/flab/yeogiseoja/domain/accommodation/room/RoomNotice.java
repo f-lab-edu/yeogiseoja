@@ -1,6 +1,7 @@
 package com.flab.yeogiseoja.domain.accommodation.room;
 
 import com.flab.yeogiseoja.common.response.messages.error.ErrorCode;
+import com.flab.yeogiseoja.domain.AbstractEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.Set;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class RoomNotice {
+public class RoomNotice extends AbstractEntity {
 
     @Id
     @GeneratedValue
@@ -31,6 +32,9 @@ public class RoomNotice {
     @ElementCollection
     @CollectionTable(name = "content", joinColumns = @JoinColumn(name = "intermediate_title"))
     private Set<String> contents = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    private Room room;
 
     public RoomNotice(
             RoomNoticeCategory roomNoticeCategory,
@@ -43,10 +47,6 @@ public class RoomNotice {
         this.contents = contents;
         this.room = room;
     }
-
-    @ManyToOne
-    @JoinColumn(name = "room_id")
-    private Room room;
 
     @Getter
     @RequiredArgsConstructor

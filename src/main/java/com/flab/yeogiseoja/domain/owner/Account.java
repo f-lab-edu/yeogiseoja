@@ -1,7 +1,6 @@
 package com.flab.yeogiseoja.domain.owner;
 
 import com.flab.yeogiseoja.common.response.messages.error.ErrorCode;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.util.Assert;
@@ -21,7 +20,7 @@ public class Account {
     private String accountHolderName;
 
     public Account(String accountBankCode, String accountNumber, String accountHolderName) {
-        Assert.hasLength(accountNumber, ErrorCode.BANK_CODE_IS_EMPTY.getErrorMsg());
+        Assert.hasLength(accountBankCode, ErrorCode.BANK_CODE_IS_EMPTY.getErrorMsg());
         Assert.hasLength(accountNumber, ErrorCode.ACCOUNT_NUMBER_IS_EMPTY.getErrorMsg());
         Assert.hasLength(accountHolderName, ErrorCode.ACCOUNT_HOLDER_IS_EMPTY.getErrorMsg());
         this.accountBankCode = BankInfo.of(accountBankCode);
@@ -42,12 +41,13 @@ public class Account {
         JB("037", "전북"),
         BNk("039", "경남"),
         TOSS("092", "토스"),
-        KAKAO("090", "카카오");
-        private final String bankCode;
-        private final String bankName;
+        KAKAO("090", "카카오"),
+        UNKNOWN("", "알수 없음");
         private static final Map<String, String> bankCodeMap = Collections.unmodifiableMap(
                 Stream.of(values()).collect(Collectors.toMap(BankInfo::getBankCode, BankInfo::getBankName))
         );
+        private final String bankCode;
+        private final String bankName;
 
         BankInfo(String bankCode, String bankName) {
             this.bankCode = bankCode;
@@ -55,7 +55,8 @@ public class Account {
         }
 
         public static BankInfo of(final String bankCode) {
-            return BankInfo.valueOf(bankCodeMap.get(bankCode));
+            BankInfo bankInfo = BankInfo.valueOf(bankCodeMap.get(bankCode));
+            return bankInfo;
         }
     }
 }

@@ -1,8 +1,6 @@
 package com.flab.yeogiseoja.domain.policy;
 
 import com.flab.yeogiseoja.common.response.messages.error.ErrorCode;
-import com.flab.yeogiseoja.domain.policy.Policy;
-import com.flab.yeogiseoja.domain.policy.PolicyStrategy;
 import org.springframework.util.Assert;
 
 public class BusinessLicenseNumberPolicy implements PolicyStrategy {
