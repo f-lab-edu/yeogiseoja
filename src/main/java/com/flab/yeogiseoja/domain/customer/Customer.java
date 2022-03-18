@@ -1,6 +1,7 @@
 package com.flab.yeogiseoja.domain.customer;
 
 import com.flab.yeogiseoja.common.response.messages.error.ErrorCode;
+import com.flab.yeogiseoja.domain.AbstractEntity;
 import com.flab.yeogiseoja.domain.owner.Owner;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -18,7 +19,7 @@ import java.util.UUID;
    객체를 생성한다 만약 가본 생성자가 존재 하지 않을 경우에는 JPA는 Entity객체를 생성하지 못할 것이다....
  */
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Customer {
+public class Customer extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
@@ -32,12 +33,6 @@ public class Customer {
     @Enumerated(EnumType.STRING)
     private Owner.Status status;
     private LocalDateTime authenticatedAt;
-
-    @CreationTimestamp
-    private LocalDateTime createdAt;
-
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
 
     @Builder
     public Customer(

@@ -28,12 +28,22 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
     implementation 'au.id.tmm:http-constants-argonaut_2.12:1.0.0'
+    implementation 'org.projectlombok:lombok:1.18.20'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'mysql:mysql-connector-java'
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
+    // MapStruct
+    implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+    annotationProcessor "org.mapstruct:mapstruct-processor:1.4.2.Final"
+    annotationProcessor(
+            'org.projectlombok:lombok',
+            'org.projectlombok:lombok-mapstruct-binding:0.1.0'
+    )
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

@@ -7,7 +7,7 @@ public class CustomInternalServerError extends BaseException {
         super(message, errorCode);
     }
 
-    public CustomInternalServerError(ErrorCode errorCode){
-        super(errorCode.getErrorMsg(),errorCode);
+    public CustomInternalServerError(ErrorCode errorCode) {
+        super(errorCode.getErrorMsg(), errorCode);
     }
 }

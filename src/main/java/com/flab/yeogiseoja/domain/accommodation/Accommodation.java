@@ -1,6 +1,7 @@
 package com.flab.yeogiseoja.domain.accommodation;
 
 import com.flab.yeogiseoja.common.response.messages.error.ErrorCode;
+import com.flab.yeogiseoja.domain.AbstractEntity;
 import com.flab.yeogiseoja.domain.accommodation.location.City;
 import com.flab.yeogiseoja.domain.accommodation.location.State;
 import com.flab.yeogiseoja.domain.owner.Owner;
@@ -17,7 +18,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Accommodation {
+public class Accommodation extends AbstractEntity {
 
     @Id
     @GeneratedValue
@@ -46,7 +47,7 @@ public class Accommodation {
     private Category category;
 
     @OneToMany(mappedBy = "accommodation", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<AccommodationNotice> accommodationNotices = new ArrayList<>();
+    private final List<AccommodationNotice> accommodationNotices = new ArrayList<>();
 
     @Builder
     public Accommodation(

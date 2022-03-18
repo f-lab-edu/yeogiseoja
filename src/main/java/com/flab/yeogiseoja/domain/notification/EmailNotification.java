@@ -1,8 +1,7 @@
 package com.flab.yeogiseoja.domain.notification;
 
-import lombok.*;
-
-import javax.persistence.*;
+import lombok.Builder;
+import lombok.Getter;
 
 
 @Getter

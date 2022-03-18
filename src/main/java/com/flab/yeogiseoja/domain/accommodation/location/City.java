@@ -1,16 +1,16 @@
 package com.flab.yeogiseoja.domain.accommodation.location;
 
+import com.flab.yeogiseoja.domain.AbstractEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.jar.JarEntry;
 
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class City {
+public class City extends AbstractEntity {
     @Id
     @Column(name = "city_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

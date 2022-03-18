@@ -1,9 +1,11 @@
 package com.flab.yeogiseoja.domain.owner;
 
+import com.flab.yeogiseoja.common.response.messages.error.ErrorCode;
+import com.flab.yeogiseoja.domain.AbstractEntity;
 import com.flab.yeogiseoja.domain.accommodation.Accommodation;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,8 +15,9 @@ import java.util.UUID;
 
 @Getter
 @Entity
+@DynamicUpdate
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Owner {
+public class Owner extends AbstractEntity {
 
     @Id
     @GeneratedValue
@@ -31,7 +34,7 @@ public class Owner {
     private LocalDateTime deletedAt;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Accommodation> accommodations = new ArrayList<>();
+    private final List<Accommodation> accommodations = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private Status status;
@@ -52,21 +55,6 @@ public class Owner {
     })
     private Account settledAccountInfo;
 
-    @CreationTimestamp
-    private LocalDateTime createAt;
-
-    @UpdateTimestamp
-    private LocalDateTime updateAt;
-
-    @Getter
-    @RequiredArgsConstructor
-    public enum Status {
-        AUTH_NOT_YET("미인증"), AUTH_COMPLETE("인증완료"),
-        VERIFIED("검증완료"), DELETED("삭제");
-
-        private final String description;
-    }
-
     @Builder
     public Owner(
             String email,
@@ -85,17 +73,29 @@ public class Owner {
         this.status = Status.AUTH_NOT_YET;
     }
 
+    public String generateRandomPassword() {
+        var randomPassword = UUID.randomUUID().toString();
+        this.password = representationName;
+        return randomPassword;
+    }
+
+    public boolean confirmPassword(String password) {
+        Assert.isTrue(password.equals(this.password), ErrorCode.PASSWORD_CONFIRM_FAIL.getErrorMsg());
+        return true;
+    }
+
     public String generateAuthTokenForAuthentication() {
         var authToken = UUID.randomUUID().toString();
         this.authToken = authToken;
         return authToken;
     }
 
-    public void confirmAuthToken(String authToken) {
-        if (!this.authToken.equals(authToken)) throw new IllegalArgumentException();
+    public boolean confirmAuthToken(String authToken) {
+        Assert.isTrue(authToken.equals(this.authToken), ErrorCode.AUTH_TOKEN_CONFIRM_FAIL.getErrorMsg());
 
         this.authenticatedAt = LocalDateTime.now();
         this.status = Status.AUTH_COMPLETE;
+        return true;
     }
 
     public void verified() {
@@ -113,5 +113,14 @@ public class Owner {
 
     public void addAccommodation(Accommodation accommodation) {
         this.accommodations.add(accommodation);
+    }
+
+    @Getter
+    @RequiredArgsConstructor
+    public enum Status {
+        AUTH_NOT_YET("미인증"), AUTH_COMPLETE("인증완료"),
+        VERIFIED("검증완료"), DELETED("삭제");
+
+        private final String description;
     }
 }
