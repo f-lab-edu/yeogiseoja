@@ -1,7 +1,8 @@
-package com.flab.yeogiseoja.domain.accommodation.room;
+package com.flab.yeogiseoja.domain.room;
 
 import com.flab.yeogiseoja.domain.AbstractEntity;
-import com.flab.yeogiseoja.domain.accommodation.room.option.RoomOption;
+import com.flab.yeogiseoja.domain.accommodation.Accommodation;
+import com.flab.yeogiseoja.domain.room.option.RoomOption;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,5 +33,11 @@ public class Room extends AbstractEntity {
         this.name = name;
         this.shortDescription = shortDescription;
         this.roomCount = roomCount;
+    }
+
+    public boolean isEqualAccommodation(Accommodation accommodation){
+
+        // TODO: accommodation hashCode와 equals 재정의 하기 
+        return accommodation.equals(accommodation);
     }
 }

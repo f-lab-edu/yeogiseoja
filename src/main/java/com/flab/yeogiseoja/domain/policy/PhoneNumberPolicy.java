@@ -23,12 +23,12 @@ public class PhoneNumberPolicy implements PolicyStrategy {
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(phoneNumber);
         Assert.isTrue(m.matches(), ErrorCode.NOT_PHONE_FORMAT.getErrorMsg());
-
     }
 
     @Override
     public boolean isSatisfiedBy() {
         checkPhoneNumberEmpty(phoneNumber);
+        checkPhoneNumberFormat(phoneNumber);
         return true;
     }
 }

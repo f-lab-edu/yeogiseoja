@@ -1,4 +1,4 @@
-package com.flab.yeogiseoja.domain.accommodation.room;
+package com.flab.yeogiseoja.domain.room;
 
 import com.flab.yeogiseoja.common.response.messages.error.ErrorCode;
 import com.flab.yeogiseoja.domain.AbstractEntity;
